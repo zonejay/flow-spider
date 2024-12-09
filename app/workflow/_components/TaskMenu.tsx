@@ -14,6 +14,7 @@ export default function TaskMenu() {
           <AccordionTrigger className="font-bold">Data extraction</AccordionTrigger>
           <AccordionContent className="flex flex-col gap-1">
             <TaskMenuBtn taskType={TaskType.PAGE_TO_HTML} />
+            <TaskMenuBtn taskType={TaskType.EXTRACT_TEXT_FROM_ELEMENT} />
           </AccordionContent>
         </AccordionItem>
       </Accordion>
@@ -21,7 +22,7 @@ export default function TaskMenu() {
   )
 }
 
-function TaskMenuBtn({taskType}: {taskType: TaskType.PAGE_TO_HTML}) {
+function TaskMenuBtn({taskType}: {taskType: TaskType}) {
   const task = TaskRegistry[taskType]
   const onDragStart = (e: DragEvent, type: TaskType) => {
     e.dataTransfer.setData('application/reactflow', type)
@@ -36,7 +37,7 @@ function TaskMenuBtn({taskType}: {taskType: TaskType.PAGE_TO_HTML}) {
     >
       <div className="flex gap-2">
         <task.icon size={20} />
-        {task.lable}
+        {task.label}
       </div>
     </Button>
   )

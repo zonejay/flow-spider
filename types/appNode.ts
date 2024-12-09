@@ -15,4 +15,5 @@ export type ParamProps = {
   param: TaskParam
   value: string
   updateNodeParamValue: (val: string) => void
+  disabled?: boolean
 }
