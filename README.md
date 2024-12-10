@@ -1,36 +1,61 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# FlowScrape
 
-## Getting Started
+FlowScrape 是一个基于 Next.js 构建的工作流自动化平台,让用户可以通过可视化界面创建和管理自动化工作流。
 
-First, run the development server:
+## 主要功能
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+- 🔄 可视化工作流编辑器
+- 🤖 自动化任务执行
+- 📊 执行状态监控
+- 🔐 用户认证与授权
+- 💰 积分/信用管理
+- 🌙 深色模式支持
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## 技术栈
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+- [Next.js 14](https://nextjs.org/) - React 框架
+- [Prisma](https://www.prisma.io/) - 数据库 ORM
+- [Clerk](https://clerk.com/) - 用户认证
+- [Tailwind CSS](https://tailwindcss.com/) - CSS 框架
+- [shadcn/ui](https://ui.shadcn.com/) - UI 组件库
+- [React Flow](https://reactflow.dev/) - 工作流编辑器
+- [React Query](https://tanstack.com/query/latest) - 数据获取与缓存
+- [TypeScript](https://www.typescriptlang.org/) - 类型安全
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+## 开始使用
 
-## Learn More
+1. 克隆项目并安装依赖:
 
-To learn more about Next.js, take a look at the following resources:
+   ```bash
+   git clone <repository-url>
+   cd flowscrape
+   npm install
+   ```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+2. 配置环境变量:
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+   ```bash
+   cp .env.example .env.local
+   ```
 
-## Deploy on Vercel
+3. 初始化数据库:
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+   ```bash
+   npx prisma generate
+   npx prisma db push
+   ```
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+4. 启动开发服务器:
+
+   ```bash
+   npm run dev
+   ```
+
+## 项目结构
+
+    flowscrape/
+    ├── app/ # Next.js 应用路由与页面
+    ├── components/ # React 组件
+    ├── lib/ # 工具函数和业务逻辑
+    ├── prisma/ # 数据库模型和迁移
+    └── public/ # 静态资源
