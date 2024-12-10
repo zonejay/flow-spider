@@ -118,7 +118,7 @@ function FlowEditor({workflow}: Props) {
       const targetTask = TaskRegistry[target.data.type]
 
       const output = sourceTask.outputs.find((o) => o.name === connection.sourceHandle)
-      const input = targetTask.outputs.find((o) => o.name === connection.targetHandle)
+      const input = targetTask.inputs.find((o) => o.name === connection.targetHandle)
 
       if (output?.type !== input?.type) return false
 
