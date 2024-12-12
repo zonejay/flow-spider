@@ -19,6 +19,7 @@ import {formatDistanceToNow} from 'date-fns'
 import {CalendarIcon, CircleDashedIcon, ClockIcon, CoinsIcon, Loader2Icon, LucideIcon, WorkflowIcon} from 'lucide-react'
 import {ReactNode, useEffect, useState} from 'react'
 import PhaseStatusBadge from './PhaseStatusBadge'
+import ReactCountUpWrapper from '@/components/ReactCountUpWrapper'
 
 type Props = {
   initialData: Awaited<ReturnType<typeof GetWorkflowExecutionWithPhases>>
@@ -51,7 +52,7 @@ export default function ExecutionViewer({initialData}: Props) {
     }
     const phaseToSelect = phases.toSorted((a, b) => (a.completedAt! > b.completedAt! ? -1 : 1))[0]
     setSelectedPhase(phaseToSelect.id)
-  }, [query.data?.phases, selectedPhase, isRunning])
+  }, [query.data?.phases, setSelectedPhase, isRunning])
 
   const duration = DatesToDurationString(query.data?.completedAt, query.data?.startedAt)
 
@@ -83,7 +84,11 @@ export default function ExecutionViewer({initialData}: Props) {
             label="Duration"
             value={duration ? duration : <Loader2Icon className="animate-spin" size={20} />}
           />
-          <ExecutionLabel icon={CoinsIcon} label="Credits consumed" value={creditsConsumed} />
+          <ExecutionLabel
+            icon={CoinsIcon}
+            label="Credits consumed"
+            value={<ReactCountUpWrapper value={creditsConsumed} />}
+          />
         </div>
         <Separator />
         <div className="flex justify-center items-center py-2 px-4">
@@ -135,7 +140,7 @@ export default function ExecutionViewer({initialData}: Props) {
                   <CoinsIcon size={18} className="stroke-muted-foreground" />
                   <span>Credits</span>
                 </div>
-                <span>TODO</span>
+                <span>{phaseDetails.data.creditsConsumed}</span>
               </Badge>
               <Badge variant={'outline'} className="space-x-4">
                 <div className="flex gap-1 items-center">

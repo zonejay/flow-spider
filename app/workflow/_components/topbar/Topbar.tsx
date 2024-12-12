@@ -7,6 +7,7 @@ import {useRouter} from 'next/navigation'
 import React from 'react'
 import SaveBtn from './SaveBtn'
 import ExecuteBtn from './ExecuteBtn'
+import NavigationTabs from './NavigationTabs'
 
 type Props = {
   title: string
@@ -30,6 +31,7 @@ export default function Topbar({title, subtitle, workflowId, hideButtons = false
           {subtitle && <p className="text-xs text-muted-foreground truncate">{subtitle}</p>}
         </div>
       </div>
+      <NavigationTabs workflowId={workflowId} />
       <div className="flex gap-1 flex-1 justify-end">
         {/* ExecuteBtn里面使用了context，需要provider包裹，但是topbar可能会在没有provider的环境中使用 */}
         {!hideButtons && (
