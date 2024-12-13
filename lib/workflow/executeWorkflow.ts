@@ -188,8 +188,10 @@ async function executePhase(
   enviroment: Environment,
   logCollector: LogCollector
 ): Promise<boolean> {
+  await waitFor(1500)
   const runFn = ExecutorRegistry[node.data.type]
   if (!runFn) {
+    logCollector.error(`not found executor for ${node.data.type}`)
     return false
   }
 
