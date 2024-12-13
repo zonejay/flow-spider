@@ -1,8 +1,7 @@
 'use client'
 
 import React, {PropsWithChildren} from 'react'
-import {Tooltip, TooltipProvider, TooltipTrigger} from './ui/tooltip'
-import {TooltipContent} from '@radix-ui/react-tooltip'
+import {Tooltip, TooltipProvider, TooltipTrigger, TooltipContent} from './ui/tooltip'
 
 type Props = PropsWithChildren<{
   content: React.ReactNode
@@ -10,6 +9,9 @@ type Props = PropsWithChildren<{
 }>
 
 function TooltipWrapper(props: Props) {
+  if (!props.content) {
+    return props.children
+  }
   return (
     <TooltipProvider delayDuration={0}>
       <Tooltip>

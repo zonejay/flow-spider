@@ -32,9 +32,12 @@ import DeleteWorkflowDialog from './DeleteWorkflowDialog'
 import RunBtn from '@/app/workflow/_components/RunBtn'
 import SchedulerDialog from './SchedulerDialog'
 import {Badge} from '@/components/ui/badge'
-import ExecutionStatusIndicator from '@/app/workflow/runs/[workflowId]/_component/ExecutionStatusIndicator'
+import ExecutionStatusIndicator, {
+  ExecutionStatusLabel
+} from '@/app/workflow/runs/[workflowId]/_component/ExecutionStatusIndicator'
 import {format, formatDistanceToNow} from 'date-fns'
 import {formatInTimeZone} from 'date-fns-tz'
+import DuplicateWorkflowDialog from './DuplicateWorkflowDialog'
 
 type Props = {
   workflow: Workflow
@@ -48,7 +51,7 @@ const statusColors = {
 function WorkflowCard({workflow}: Props) {
   const isDraft = workflow.status === WorkflowStatus.DRAFT
   return (
-    <Card className="border border-separate shadow-sm rounded-lg overflow-hidden hover:shadow-md dark:shadow-primary">
+    <Card className="border border-separate shadow-sm rounded-lg overflow-hidden hover:shadow-md dark:shadow-primary group/card">
       <CardContent className="p-4 flex items-center justify-between h-[100px]">
         <div className="flex items-center justify-end space-x-3">
           <div
@@ -61,14 +64,18 @@ function WorkflowCard({workflow}: Props) {
           </div>
           <div>
             <h3 className="text-base font-bold text-muted-foreground flex items-center">
-              <Link href={`/workflow/editor/${workflow.id}`} className="flex items-center hover:underline">
-                {workflow.name}
-              </Link>
+              <TooltipWrapper content={workflow.description}>
+                <Link href={`/workflow/editor/${workflow.id}`} className="flex items-center hover:underline">
+                  {workflow.name}
+                </Link>
+              </TooltipWrapper>
+
               {isDraft && (
                 <span className="ml-2 px-2 py-0.5 text-xs font-medium bg-yellow-100 text-yellow-800 rounded-full">
                   Draft
                 </span>
               )}
+              <DuplicateWorkflowDialog workflowId={workflow.id} />
             </h3>
             <ScheduleSection
               isDraft={isDraft}
@@ -189,7 +196,7 @@ export function LastRunDetails({workflow}: {workflow: Workflow}) {
           <Link href={`/workflow/runs/${workflow.id}/${lastRunId}`} className="flex items-center text-sm gap-2 group">
             <span>Last run:</span>
             <ExecutionStatusIndicator status={lastRunStatus as WorkflowExecutionStatus} />
-            <span>{lastRunStatus}</span>
+            <ExecutionStatusLabel status={lastRunStatus as WorkflowExecutionStatus} />
             <span>{formattedStartedAt}</span>
             <ChevronRightIcon size={14} className="-translate-x-[2px] group-hover:translate-x-0 transition" />
           </Link>
