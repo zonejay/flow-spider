@@ -8,7 +8,8 @@ import {
   ExecutionPhaseStatus,
   WorkflowExecutionPlan,
   WorkflowExecutionStatus,
-  WorkflowExecutionTrigger
+  WorkflowExecutionTrigger,
+  WorkflowStatus
 } from '@/types/workflow'
 import {auth} from '@clerk/nextjs/server'
 import {redirect} from 'next/navigation'
@@ -39,23 +40,32 @@ export async function RunWorkflow(form: {workflowId: string; flowDefinition?: st
   }
 
   let executionPlan: WorkflowExecutionPlan
+  let workfloDefinition = flowDefinition
+  if (workflow.status === WorkflowStatus.PUBLISHED) {
+    if (workflow.executionPlan) {
+      executionPlan = JSON.parse(workflow.executionPlan)
+      workfloDefinition = workflow.definition
+    } else {
+      throw new Error('no execution found in published workflow')
+    }
+  } else {
+    if (!flowDefinition) {
+      throw new Error('flow definition is not defined')
+    }
 
-  if (!flowDefinition) {
-    throw new Error('flow definition is not defined')
+    const flow = JSON.parse(flowDefinition)
+    const result = FlowToExecutionPlan(flow.nodes, flow.edges)
+
+    if (result.error) {
+      throw new Error('flow definition not valid')
+    }
+
+    if (!result.executionPlan) {
+      throw new Error('no execution plan generated')
+    }
+
+    executionPlan = result.executionPlan
   }
-
-  const flow = JSON.parse(flowDefinition)
-  const result = FlowToExecutionPlan(flow.nodes, flow.edges)
-
-  if (result.error) {
-    throw new Error('flow definition not valid')
-  }
-
-  if (!result.executionPlan) {
-    throw new Error('no execution plan generated')
-  }
-
-  executionPlan = result.executionPlan
 
   const execution = await prisma.workflowExecution.create({
     data: {
@@ -64,13 +74,13 @@ export async function RunWorkflow(form: {workflowId: string; flowDefinition?: st
       status: WorkflowExecutionStatus.PENDING,
       startedAt: new Date(),
       trigger: WorkflowExecutionTrigger.MANUAL,
-      definition: flowDefinition,
+      definition: workfloDefinition,
       phases: {
         create: executionPlan.flatMap((phase) => {
           return phase.nodes.flatMap((node) => {
             return {
               userId,
-              status: ExecutionPhaseStatus.COMPLETED,
+              status: ExecutionPhaseStatus.CREATED,
               number: phase.phase,
               node: JSON.stringify(node),
               name: TaskRegistry[node.data.type].label

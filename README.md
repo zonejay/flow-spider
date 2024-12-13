@@ -1,61 +1,115 @@
 # FlowScrape
 
-FlowScrape 是一个基于 Next.js 构建的工作流自动化平台,让用户可以通过可视化界面创建和管理自动化工作流。
+FlowScrape is a workflow automation platform built with Next.js, enabling users to create and manage automated workflows through a visual interface.
 
-## 主要功能
+[中文文档](README.cn.md)
 
-- 🔄 可视化工作流编辑器
-- 🤖 自动化任务执行
-- 📊 执行状态监控
-- 🔐 用户认证与授权
-- 💰 积分/信用管理
-- 🌙 深色模式支持
+## Key Features
 
-## 技术栈
+- 🔄 Visual Workflow Editor
+- 🤖 Automated Task Execution
+- 📊 Execution Status Monitoring
+- 🔐 User Authentication & Authorization
+- 🌙 Dark Mode Support
+- 🌍 Internationalization
+- 📅 Scheduled Tasks
+- 🔄 Real-time Progress Tracking
 
-- [Next.js 14](https://nextjs.org/) - React 框架
-- [Prisma](https://www.prisma.io/) - 数据库 ORM
-- [Clerk](https://clerk.com/) - 用户认证
-- [Tailwind CSS](https://tailwindcss.com/) - CSS 框架
-- [shadcn/ui](https://ui.shadcn.com/) - UI 组件库
-- [React Flow](https://reactflow.dev/) - 工作流编辑器
-- [React Query](https://tanstack.com/query/latest) - 数据获取与缓存
-- [TypeScript](https://www.typescriptlang.org/) - 类型安全
+## Tech Stack
 
-## 开始使用
+### Core Framework
 
-1. 克隆项目并安装依赖:
+- [Next.js 14](https://nextjs.org/) - React Framework
+- [React 18](https://react.dev/) - UI Library
+- [TypeScript](https://www.typescriptlang.org/) - Type Safety
 
-   ```bash
-   git clone <repository-url>
-   cd flowscrape
-   npm install
-   ```
+### Data Layer
 
-2. 配置环境变量:
+- [Prisma](https://www.prisma.io/) - Database ORM
+- [React Query](https://tanstack.com/query/latest) - Data Fetching & Caching
 
-   ```bash
-   cp .env.example .env.local
-   ```
+### UI Framework
 
-3. 初始化数据库:
+- [Tailwind CSS](https://tailwindcss.com/) - CSS Framework
+- [shadcn/ui](https://ui.shadcn.com/) - UI Component Library
+- [Radix UI](https://www.radix-ui.com/) - Accessible Component Primitives
+- [Lucide Icons](https://lucide.dev/) - Icon Library
+- [Sonner](https://sonner.emilkowal.ski/) - Toast Notifications
+- [Vaul](https://vaul.emilkowal.ski/) - Drawer Component
 
-   ```bash
-   npx prisma generate
-   npx prisma db push
-   ```
+### Feature Components
 
-4. 启动开发服务器:
+- [@xyflow/react](https://reactflow.dev/) - Workflow Editor
+- [Recharts](https://recharts.org/) - Data Visualization
+- [React Hook Form](https://react-hook-form.com/) - Form Handling
+- [Zod](https://zod.dev/) - Data Validation
+- [date-fns](https://date-fns.org/) - Date Manipulation
+- [Puppeteer](https://pptr.dev/) - Web Automation
+- [Cheerio](https://cheerio.js.org/) - HTML Parsing
 
-   ```bash
-   npm run dev
-   ```
+### Enhancements
 
-## 项目结构
+- [Clerk](https://clerk.com/) - Authentication
+- [next-themes](https://github.com/pacocoursey/next-themes) - Theme Switching
+- [i18next](https://www.i18next.com/) - Internationalization
+- [cron-parser](https://github.com/harrisiirak/cron-parser) - Cron Expression Parser
+- [nextjs-toploader](https://github.com/TheSGJ/nextjs-toploader) - Page Load Progress
 
-    flowscrape/
-    ├── app/ # Next.js 应用路由与页面
-    ├── components/ # React 组件
-    ├── lib/ # 工具函数和业务逻辑
-    ├── prisma/ # 数据库模型和迁移
-    └── public/ # 静态资源
+## Getting Started
+
+1. Clone and install dependencies:
+
+```bash
+git clone <repository-url>
+cd flowscrape
+npm install
+```
+
+2. Configure environment variables:
+
+```bash
+cp .env.example .env.local
+```
+
+3. Initialize database:
+
+```bash
+npx prisma generate
+npx prisma db push
+```
+
+4. Start development server:
+
+```bash
+npm run dev
+```
+
+## Project Structure
+
+```
+flowscrape/
+├── app/           # Next.js app routes and pages
+├── components/    # React components
+├── lib/          # Utility functions and business logic
+├── prisma/       # Database models and migrations
+├── public/       # Static assets
+├── actions/      # Server actions
+└── i18n/         # Internationalization files
+```
+
+## Requirements
+
+- Node.js 18+
+- PostgreSQL Database
+- npm or yarn package manager
+
+## Development Tools
+
+- [TypeScript](https://www.typescriptlang.org/) - Type Checking
+- [ESLint](https://eslint.org/) - Code Linting
+- [Prisma Studio](https://www.prisma.io/studio) - Database Management
+- [React Query Devtools](https://tanstack.com/query/latest/docs/react/devtools) - Query Debugging
+
+## License
+
+[MIT](LICENSE)
