@@ -91,3 +91,7 @@
     @apply !bg-accent;
   }
 }
+
+.react-flow__attribution {
+  background: transparent !important;
+}
