@@ -9,10 +9,12 @@ export async function GetCredentialsForUser() {
     throw new Error('unauthenticated')
   }
 
-  return prisma.credential.findMany({
+  const data = await prisma.credential.findMany({
     where: {userId},
     orderBy: {
       name: 'asc'
     }
   })
+
+  return data
 }

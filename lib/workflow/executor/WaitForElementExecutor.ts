@@ -25,7 +25,8 @@ export async function WaitForElementExecutor(
 
     return true
   } catch (error: any) {
-    enviroment.log.error(error)
+    enviroment.log.error(error.message)
+
     return false
   }
 }

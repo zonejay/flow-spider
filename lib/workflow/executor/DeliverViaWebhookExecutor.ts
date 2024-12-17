@@ -34,7 +34,7 @@ export async function DeliverViaWebhookExecutor(
     enviroment.log.info(JSON.stringify(resBody, null, 4))
     return true
   } catch (error: any) {
-    enviroment.log.error(error)
+    enviroment.log.error(error.message)
     return false
   }
 }

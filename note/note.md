@@ -58,3 +58,6 @@ app/
 - 圆括号分组不会影响最终的 URL 结构
 - 可以在分组内使用独立的布局文件 (layout.tsx)
 - 分组名称仅用于组织目的，可以使用任意有效的文件夹名称
+
+puppeteer-extra-plugin-stealth A plugin for puppeteer-extra and playwright-extra to prevent detection.
+browserscan

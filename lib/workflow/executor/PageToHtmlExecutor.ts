@@ -7,7 +7,8 @@ export async function PageToHtmlExecutor(enviroment: ExecutionEnviroment<typeof 
     enviroment.setOutput('Html', html)
     return true
   } catch (error: any) {
-    enviroment.log.error(error)
+    enviroment.log.error(error.message)
+
     return false
   }
 }

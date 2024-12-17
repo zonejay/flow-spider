@@ -8,6 +8,11 @@ import {FillInputExecutor} from './FillInputExecutor'
 import {ClickElementExecutor} from './ClickElementExecutor'
 import {WaitForElementExecutor} from './WaitForElementExecutor'
 import {DeliverViaWebhookExecutor} from './DeliverViaWebhookExecutor'
+import {ExtractDataWithAiExecutor} from './ExtractDataWithAiExecutor'
+import {ReadPropertyFromJsonExecutor} from './ReadPropertyFromJsonExecutor'
+import {AddPropertyToJsonExecutor} from './AddPropertyToJsonExecutor'
+import {NavigateUrlExecutor} from './NavigateUrlExecutor'
+import {ScrollToElementExecutor} from './ScrollToElementExecutor'
 
 type ExecutorFn<T extends WorkflowTask> = (enviroment: ExecutionEnviroment<T>) => Promise<boolean>
 
@@ -22,5 +27,10 @@ export const ExecutorRegistry: RegistryType = {
   [TaskType.FILL_INPUT]: FillInputExecutor,
   [TaskType.CLICK_ELEMENT]: ClickElementExecutor,
   [TaskType.WAIT_FOR_ELEMENT]: WaitForElementExecutor,
-  [TaskType.DELIVER_VIA_WEBHOOK]: DeliverViaWebhookExecutor
+  [TaskType.DELIVER_VIA_WEBHOOK]: DeliverViaWebhookExecutor,
+  [TaskType.EXTRACT_DATA_WITH_AI]: ExtractDataWithAiExecutor,
+  [TaskType.READ_PROPERTY_FROM_JSON]: ReadPropertyFromJsonExecutor,
+  [TaskType.ADD_PROPERTY_TO_JSON]: AddPropertyToJsonExecutor,
+  [TaskType.NAVIGATE_URL]: NavigateUrlExecutor,
+  [TaskType.SCROLL_TO_ELEMENT]: ScrollToElementExecutor
 }

@@ -14,7 +14,6 @@ const NodeComponent = memo((props: NodeProps<AppNode>) => {
   const task = TaskRegistry[nodeData.type]
   return (
     <NodeCard nodeId={props.id} isSelected={props.selected}>
-      {DEV_MODE && <Badge>Dev: {props.id}</Badge>}
       <NodeHeader taskType={nodeData.type} nodeId={props.id} />
       <NodeInputs>
         {task.inputs.map((input) => (

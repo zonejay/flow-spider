@@ -18,7 +18,7 @@ export async function FillInputExecutor(enviroment: ExecutionEnviroment<typeof F
 
     return true
   } catch (error: any) {
-    enviroment.log.error(error)
+    enviroment.log.error(error.message)
     return false
   }
 }

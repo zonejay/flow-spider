@@ -12,7 +12,7 @@ export async function ClickElementExecutor(enviroment: ExecutionEnviroment<typeo
 
     return true
   } catch (error: any) {
-    enviroment.log.error(error)
+    enviroment.log.error(error.message)
     return false
   }
 }
